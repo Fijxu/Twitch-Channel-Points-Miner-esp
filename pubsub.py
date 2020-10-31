@@ -72,7 +72,7 @@ def on_message(ws, message):
                 if channel_id in get_streamer_ids():
                     new_balance = message_data["balance"]["balance"]
                     channel_login = get_login_by_channel_id(channel_id)
-                    print(f"{new_balance} channel points for {channel_login}!")
+                    print(f"{new_balance} puntos del canal para {channel_login}!")
             elif message["type"] == "claim-available":
                 channel_id = message_data["claim"]["channel_id"]
                 if channel_id in get_streamer_ids():
@@ -96,10 +96,10 @@ def on_message(ws, message):
                 update_raid(channel_login, raid)
 
     elif response["type"] == "RESPONSE" and len(response.get("error", "")) > 0:
-        raise RuntimeError(f"Error while trying to listen for a topic: {response}")
+        raise RuntimeError(f"Error al tratar de buscar un tema: {response}")
 
     elif response["type"] == "RECONNECT":
-        print("Reconnecting to Twitch PubSub server...")
+        print("Reconectando al servidor de Twitch PobSub...")
         ws.close()
         time.sleep(30)
         listen_for_channel_points()

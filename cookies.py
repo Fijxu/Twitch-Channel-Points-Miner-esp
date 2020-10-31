@@ -15,7 +15,7 @@ def get_cookie_value(key):
                 return cookie["value"]
     # delete current cookie file as it's invalid
     os.remove(get_cookies_path())
-    raise WrongCookiesException(f"Can't find cookie for key {key}, must login again!")
+    raise WrongCookiesException(f"No puedo encontrar la cookie de la llave {key}, tendras que ingresar otra vez!")
 
 
 cookies_cached = None
@@ -28,7 +28,7 @@ def load_cookies():
         if os.path.isfile(cookie_path):
             cookies_cached = pickle.load(open(cookie_path, "rb"))
         else:
-            raise WrongCookiesException("There must be a cookies file!")
+            raise WrongCookiesException("Debe haber un archivo de cookies!")
 
     return cookies_cached
 

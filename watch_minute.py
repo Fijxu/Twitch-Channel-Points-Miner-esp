@@ -36,7 +36,7 @@ def send_minute_watched_events():
                 try:
                     requests.post(request_info.url, data=request_info.payload, headers=headers)
                 except requests.exceptions.ConnectionError as e:
-                    print("Error while trying to watch a minute:", str(e))
+                    print("Error al tratar de ver un minuto:", str(e))
 
             time.sleep(max(next_iteration - time.time(), 0))
 

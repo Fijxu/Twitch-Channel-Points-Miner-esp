@@ -10,11 +10,11 @@ from watch_minute import send_minute_watched_events
 
 def main():
     if not check_login():
-        print("Login failed.")
+        print("Ingreso Fallido.")
         return
     streamer_logins = read_streamer_logins()
     if not streamer_logins:
-        print("You have to specify at least one streamer!")
+        print("Tienes que especificar al menos un streamer!")
         return
     set_streamer_logins(streamer_logins)
     do_for_each_streamer(load_channel_points_context)
@@ -26,8 +26,8 @@ def main():
 def read_streamer_logins():
     user_input = []
     if len(sys.argv) <= 1:  # no command-line args (the first is always source file name)
-        print("Enter the streamer name (or several separated by commas). More important streamers go first.")
-        twitch_streamers = input("Streamer names: ")
+        print("Ingresa el nombre del streamer (o varios streamers separados por comas). Los streamers mas importantes van primero.")
+        twitch_streamers = input("Nombres de los streamers: ")
         user_input = twitch_streamers.split(",")
     else:
         for i in range(1, len(sys.argv)):
@@ -41,7 +41,7 @@ def read_streamer_logins():
         try:
             get_channel_id(streamer_login)
         except StreamerDoesNotExistException:
-            print(f"Streamer {streamer_login} does not exist")
+            print(f"El streamer {streamer_login} no existe")
         else:
             streamer_logins.append(streamer_login)
     return streamer_logins

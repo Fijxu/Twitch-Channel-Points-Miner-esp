@@ -17,7 +17,7 @@ def check_login():
         success = twitch_login.login_flow()
         if success:
             twitch_login.save_cookies()
-            print("Login successful!")
+            print("Ingreso exitoso!")
         return success
     else:
         return True
@@ -34,7 +34,7 @@ class TwitchLogin:
         self.email = None
 
     def login_flow(self):
-        print("You'll have to login to Twitch!")
+        print("Te tienes que logear con tu cuenta de twitch!")
 
         post_data = {
             'client_id': get_client_id(),
@@ -45,8 +45,8 @@ class TwitchLogin:
         use_backup_flow = False
 
         while True:
-            self.username = input('Enter Twitch username: ')
-            password = getpass.getpass('Enter Twitch password: ')
+            self.username = input('Ingresa el nombre de twitch: ')
+            password = getpass.getpass('Ingresa la contraseña de twitch: ')
 
             post_data['username'] = self.username
             post_data['password'] = password
@@ -62,9 +62,9 @@ class TwitchLogin:
                     err_code = login_response['error_code']
                     if err_code == 3011 or err_code == 3012:  # missing 2fa token
                         if err_code == 3011:
-                            print('Two factor authentication enabled, please enter token below.')
+                            print('Autenticación de dos factores activado, por favor, ingresa tu token a continuación.')
                         else:
-                            print('Invalid two factor token, please try again.')
+                            print('Token de dos factores inválido, por favor, inténtelo de nuevo.')
 
                         twofa = input('2FA token: ')
                         post_data['authy_token'] = twofa.strip()
@@ -72,20 +72,20 @@ class TwitchLogin:
 
                     elif err_code == 3022 or err_code == 3023:  # missing 2fa token
                         if err_code == 3022:
-                            print('Login Verification code required.')
+                            print('Se requiere un código de verificación de acceso.')
                             self.email = login_response['obscured_email']
                         else:
-                            print('Invalid Login Verification code entered, please try again.')
+                            print('Código de verificación de ingreso inválido ingresado, por favor inténtelo de nuevo.')
 
-                        twofa = input(f'Please enter the 6-digit code sent to {self.email}: ')
+                        twofa = input(f'Por favor, introduzca el código de 6 dígitos enviado a {self.email}: ')
                         post_data['twitchguard_code'] = twofa.strip()
                         continue
 
                     elif err_code == 3001:  # invalid password
-                        print('Invalid username or password, please try again.')
+                        print('Nombre de usuario o contraseña inválidos, por favor inténtelo de nuevo.')
                         break
                     elif err_code == 1000:
-                        print('Console login unavailable (CAPTCHA solving required).')
+                        print('El acceso a la consola no está disponible (se requiere resolución de CAPTCHA).')
                         use_backup_flow = True
                         break
                     else:

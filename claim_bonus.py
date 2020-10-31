@@ -10,7 +10,7 @@ from twitch_data import get_auth_token, get_channel_id, USER_AGENT, get_client_i
 
 
 def claim_channel_points_bonus(streamer_login, claim_id):
-    print(f"Claiming the bonus for {streamer_login}!")
+    print(f"Obteniendo bonus de {streamer_login}!")
     json_data = {"operationName": "ClaimCommunityPoints",
                  "variables": {"input": {"channelID": get_channel_id(streamer_login), "claimID": claim_id}},
                  "extensions": {"persistedQuery": {"version": 1, "sha256Hash": "46aaeebe02c99afdf4fc97c7c0cba964124bf6b0af229395f1f6d1feed05b3d0"}}}
@@ -27,7 +27,7 @@ def load_channel_points_context(streamer_login):
         raise StreamerDoesNotExistException
     community_points = response["data"]["community"]["channel"]["self"]["communityPoints"]
     initial_balance = community_points["balance"]
-    print(f"{initial_balance} channel points for {streamer_login}!")
+    print(f"{initial_balance} puntos de canal para {streamer_login}!")
     available_claim = community_points["availableClaim"]
     if available_claim is not None:
         claim_id = available_claim["id"]

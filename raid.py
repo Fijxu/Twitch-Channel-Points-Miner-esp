@@ -25,4 +25,4 @@ def update_raid(streamer_login, raid):
              "variables": {"input": {"raidID": raid.raid_id}},
              "extensions": {"persistedQuery": {"version": 1, "sha256Hash": "c6a332a86d1087fbbb1a8623aa01bd1313d2386e7c63be60fdb2d1901f01a4ae"}}})
 
-        print(f"Joining raid from {streamer_login} to {raid.target_login}!")
+        print(f"Uniendose a la raid de {streamer_login} para {raid.target_login}!")

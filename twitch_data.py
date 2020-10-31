@@ -48,7 +48,7 @@ def check_online(streamer_login, print_offline_message=False):
         except StreamerIsOfflineException:
             set_offline(streamer_login, print_offline_message)
         else:
-            print(f"{streamer_login} is live!")
+            print(f"{streamer_login} esta en vivo!")
 
 
 def set_offline(streamer_login, print_offline_message=True):
@@ -57,7 +57,7 @@ def set_offline(streamer_login, print_offline_message=True):
         last_offline_time[streamer_login] = time.time()
 
         if print_offline_message:
-            print(f"{streamer_login} is offline currently.")
+            print(f"{streamer_login} esta offline actualmente.")
 
 
 def is_online(streamer_login):
