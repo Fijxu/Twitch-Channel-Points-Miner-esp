@@ -15,7 +15,7 @@ Para ejecutarlo, primero tienes que hacer lo siguente:
 
 Entonces ejecuta `main.py`
 
-Screenshot Original
+
 ![Screenshot](https://user-images.githubusercontent.com/55288842/96374655-8f233c00-117c-11eb-8c02-b2ba0d0d5962.png)
-Screenshot
+
 ![Screenshot](https://i.vgy.me/401amh.png)
